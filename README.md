@@ -1,4 +1,4 @@
-# VPN Good | 4月6日22.1M/S|免费V2ray/Shadowrocket/Clash/SSR订阅节点  更新时间 2025-04-06 13:55:59
+# VPN Good | 4月6日20.3M/S|免费Shadowrocket/Clash/V2ray/SSR订阅节点  更新时间 2025-04-06 13:57:56
 所有免费clash节点都爬取自网络，请勿用于非法用途 。节点地址：<a href="https://vpngood.github.io" target="_blank">点击跳转</a>
 
 ## clash使用教程：
