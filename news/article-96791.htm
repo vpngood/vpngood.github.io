@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vpngood.github.io/news/article-96791.htm" />
+    <meta charset="utf-8">
+    <title>虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）</title>
+        <meta name="description" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均" />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="VPN Good 机场订阅中文网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpngood.github.io/news/article-96791.htm" />
+    <meta property="og:site_name" content="VPN Good 机场订阅中文网" />
+    <meta property="og:title" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）" />
+    <meta property="og:image" content="https://vpngood.github.io/uploads/20240903-1/c335db14ce11be029837742afeb9304e.webp" />
+        <meta property="og:release_date" content="2025-04-15T06:02:35" />
+    <meta property="og:updated_time" content="2025-04-15T06:02:35" />
+        <meta property="og:description" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机） 虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均" />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VHZLTFL6W4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VHZLTFL6W4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">VPN Good</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                  				  				  				<div id="content_views" class="htmledit_views"> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126392576?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（一、搭建虚拟机）</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126393577?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（二、克隆虚拟机）</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126406340?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（三、搭建负载均衡）</a></p> <p><a href="http://www.m6000.cn/wp-content/themes/begin%20lts/inc/go.php?url=https://blog.csdn.net/lmp5023/article/details/126406681?spm=1001.2014.3001.5501"  title="虚拟机搭建负载均衡，mysql主从复制和读写分离（四、搭建主从复制和读写分离）" rel="nofollow">虚拟机搭建负载均衡，mysql主从复制和读写分离（四、搭建主从复制和读写分离）</a></p> <p style="text-align:justify;">1.上传项目</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;小编分别在三台虚拟机上下载了thinkphp6框架，模拟线上项目。</p> <p style="text-align:justify;">2.添加站点<img fetchpriority="high" decoding="async" alt="" height="786" src="http://img.555519.xyz/uploads3/20220901/379b4554ba81f80263d4352183d20170.jpg"></p> <p style="text-align:center;">&nbsp;图4-1</p> <p style="margin-left:.0001pt;text-align:center;">图4-1<img decoding="async" alt="" height="570" src="http://img.555519.xyz/uploads3/20220901/d156d2bf22ed23b75ab806c4532d2a2f.jpg"></p> <p style="text-align:center;">图4-2<img decoding="async" alt="" height="205" src="http://img.555519.xyz/uploads3/20220901/62c5341a20eef64af9b05a7f7f1e637c.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-3</p> <p style="margin-left:.0001pt;text-align:justify;">3.在配置文件中添加这两句话：</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;upstream ces &nbsp;{<!-- --></p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;#server 服务ip地址:端口号 weight表示权值，权值越大，被分配的几率越大;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server 192.168.121.112:80 weight=1;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;server 192.168.121.113:80 weight=1;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p> <p style="margin-left:.0001pt;text-align:justify;"> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;location ~ / {<!-- --></p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;proxy_pass http://ces;</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<img loading="lazy" decoding="async" alt="" height="528" src="http://img.555519.xyz/uploads3/20220901/4b21dd01af282bdb148b3a5760c9c642.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-4</p> <p style="margin-left:.0001pt;text-align:justify;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;负载均衡就是用户访问192.168.121.111这台虚拟机的时候，这台虚拟机根据nginx设置的权重把请求转发到其他虚拟机上面去，代理参数，轮询方法可以查下其他文章，这里先不用管。</p> <p style="margin-left:.0001pt;text-align:justify;">4.配置完成后，需要到192.168.121.112和192.168.121.113两台虚拟机上面的/www/server/panel/vhost/nginx目录删除0.default.conf文件，不然访问的是暂未设置网站的默认页面<img loading="lazy" decoding="async" alt="" height="237" src="http://img.555519.xyz/uploads3/20220901/aef3544d1be0fa901b8c9f030dfcd203.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-5</p> <p style="margin-left:.0001pt;text-align:justify;">5.览器输入192.168.121.111，可以看到转发到了不同虚拟机，到此负载均衡搭建完成。</p> <p class="img-center"><img loading="lazy" decoding="async" alt="" height="126" src="http://img.555519.xyz/uploads3/20220901/08686aff48a83521958e6cf61bf78922.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-6</p> <p style="margin-left:.0001pt;text-align:center;"><img loading="lazy" decoding="async" alt="" height="119" src="http://img.555519.xyz/uploads3/20220901/4b921e410c31d3d36ad64711e0466226.jpg"></p> <p style="margin-left:.0001pt;text-align:center;">图4-7</p> </div> 			                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-96054.htm">宠物店一年的纯利润能挣多少钱（宠物店生意好的一般多少收入一个月）</a></p>
+                                        <p>下一个：<a href="/news/article-96794.htm">宠爱国际宠物医院加盟（宠爱国际动物医院加盟）</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/free-nodes/2025-4-14-free-v2ray.htm" title="VPN Good | 4月14日22.5M/S|免费V2ray/Clash/Shadowrocket/SSR订阅节点">VPN Good | 4月14日22.5M/S|免费V2ray/Clash/Shadowrocket/SSR订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-90075.htm" title="动物疫苗接种时间间隔规定最新（动物疫苗接种时间间隔规定最新版）">动物疫苗接种时间间隔规定最新（动物疫苗接种时间间隔规定最新版）</a></li>
+                        <li class="py-2"><a href="/news/article-91210.htm" title="Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(SQL支持和变通方案)">Citus 分布式 PostgreSQL 集群 &#8211; SQL Reference(SQL支持和变通方案)</a></li>
+                        <li class="py-2"><a href="/news/article-96794.htm" title="宠爱国际宠物医院加盟（宠爱国际动物医院加盟）">宠爱国际宠物医院加盟（宠爱国际动物医院加盟）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-13-free-v2ray-subscribe.htm" title="VPN Good | 4月13日19.8M/S|免费Clash/V2ray/Shadowrocket/SSR订阅节点">VPN Good | 4月13日19.8M/S|免费Clash/V2ray/Shadowrocket/SSR订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-91211.htm" title="宠物粮市场分析图（宠物粮市场份额）">宠物粮市场分析图（宠物粮市场份额）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-6-free-subscribe-node.htm" title="VPN Good | 4月6日21.6M/S|免费Clash/V2ray/Shadowrocket/SSR订阅节点">VPN Good | 4月6日21.6M/S|免费Clash/V2ray/Shadowrocket/SSR订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-90797.htm" title="宠物领养合同违约金3000合理吗合法吗（宠物的领养协议是有法律保护的吗）">宠物领养合同违约金3000合理吗合法吗（宠物的领养协议是有法律保护的吗）</a></li>
+                        <li class="py-2"><a href="/news/article-95300.htm" title="Element UI之 Timeline时间线 样式">Element UI之 Timeline时间线 样式</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-12-node-share.htm" title="VPN Good | 4月12日23M/S|免费Shadowrocket/V2ray/Clash/SSR订阅节点">VPN Good | 4月12日23M/S|免费Shadowrocket/V2ray/Clash/SSR订阅节点</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">33</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">VPN Good 机场订阅中文网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
