@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html xml:lang="zh-CN" lang="zh-CN">
+
+<head>
+        <link rel="canonical" href="https://vpngood.github.io/news/article-105128.htm" />
+    <meta charset="utf-8">
+    <title>React + TypeScript实战（一）设定事件处理函数的参数类型</title>
+        <meta name="description" content="首先提出需求，给input框绑定一个change事件，打印输入框中每次输入的内容。 在设定参数类型的时候，首先想到的就是Event类型： type IState = readonly&lt;{    " />
+        <link rel="icon" href="/assets/website/img/stashgithub/favicon.ico" type="image/x-icon"/>
+
+    <meta name="author" content="VPN Good 机场订阅中文网">
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://vpngood.github.io/news/article-105128.htm" />
+    <meta property="og:site_name" content="VPN Good 机场订阅中文网" />
+    <meta property="og:title" content="React + TypeScript实战（一）设定事件处理函数的参数类型" />
+    <meta property="og:image" content="https://vpngood.github.io/uploads/20240903-1/2349b67d05b32c4b514099101832ee0e.webp" />
+        <meta property="og:release_date" content="2025-04-26T07:41:23" />
+    <meta property="og:updated_time" content="2025-04-26T07:41:23" />
+        <meta property="og:description" content="首先提出需求，给input框绑定一个change事件，打印输入框中每次输入的内容。 在设定参数类型的时候，首先想到的就是Event类型： type IState = readonly&lt;{    " />
+        
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <meta name="applicable-device" content="pc,mobile" />
+    <meta name="renderer" content="webkit" />
+    <meta name="force-rendering" content="webkit" />
+    <meta http-equiv="Cache-Control" content="no-transform" />
+    <meta name="robots" content="max-image-preview:large" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="React + TypeScript实战（一）设定事件处理函数的参数类型">
+    <meta name="format-detection" content="telephone=no">
+
+    <link rel="dns-prefetch" href="https:/www.googletagmanager.com">
+    <link rel="dns-prefetch" href="https://www.googleadservices.com">
+    <link rel="dns-prefetch" href="https://www.google-analytics.com">
+    <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com">
+    <link rel="dns-prefetch" href="https://cm.g.doubleclick.net">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap" rel="stylesheet">
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" />
+    <link href="https://cdn.bootcdn.net/ajax/libs/bootstrap-icons/1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- Libraries Stylesheet -->
+    <link href="/assets/website/js/frontend/stashgithub/lightbox/css/lightbox.min.css" rel="stylesheet">
+    <link href="/assets/website/js/frontend/stashgithub/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="/assets/website/css/stashgithub/bootstrap.min.css" rel="stylesheet">
+    <!-- Template Stylesheet -->
+    <link href="/assets/website/css/stashgithub/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/website/css/G.css" />
+    <!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-VHZLTFL6W4"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-VHZLTFL6W4');
+</script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3332997411212854"
+     crossorigin="anonymous"></script>
+</head>
+
+<body data-page="detail">
+        <!-- Spinner Start -->
+    <div id="spinner" class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+        <div class="spinner-grow text-primary" role="status"></div>
+    </div>
+    <!-- Spinner End -->
+    <!-- Navbar start -->
+    <div class="container-fluid fixed-top">
+        <div class="container topbar bg-primary d-none d-lg-block">
+            <div class="d-flex justify-content-between">
+                
+            </div>
+        </div>
+        <div class="container px-0">
+            <nav class="navbar navbar-light bg-white navbar-expand-xl">
+                <a href="/" class="navbar-brand">
+                                <span class="text-primary display-6">VPN Good</span>
+                                </a>
+                <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="fa fa-bars text-primary"></span>
+                </button>
+                <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
+                    <div class="navbar-nav mx-auto">
+                                                <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
+                                                <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
+                                                <a href="/news/" class="nav-item nav-link">新闻资讯</a>
+                                                <a href="/client.htm" class="nav-item nav-link">客户端</a>
+                                            </div>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Navbar End -->
+    <!-- Single Page Header start -->
+    <div class="container-fluid page-header py-5">
+        <h1 class="text-center text-white display-6">React + TypeScript实战（一）设定事件处理函数的参数类型</h1>
+        <ol class="breadcrumb justify-content-center mb-0">
+            <li class="breadcrumb-item"><a href="/">首页</a></li>
+            <li class="breadcrumb-item"><a href="/news/">新闻资讯</a></li>
+            <li class="breadcrumb-item active text-white">正文</li>
+        </ol>
+    </div>
+    <!-- Single Page Header End -->
+    <!-- Fruits Shop Start-->
+    <div class="container-fluid fruite py-5">
+        <div class="container py-2">
+            <div class="row">
+                <div class="col-md-9">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                <div class="xcblog-blog-detail xcblog-blog-detail-defined">
+                      				  				  				<div id="content_views" class="markdown_views prism-atom-one-light"> </h1> <p>首先提出需求，给input框绑定一个change事件，打印输入框中每次输入的内容。</p> <p>在设定参数类型的时候，首先想到的就是<code>Event</code>类型：</p> <pre><code class="prism language-react">type IState = readonly&lt;{     ... }&gt;  class Student extends React.Component&lt;any, IState&gt;{   inputChange = (e: Event) =&gt; {     console.log(((e.target) as HTMLInputElement).value);   }    render(): React.ReactNode {     return &lt;div className="container"&gt;       &lt;div className="box"&gt;         &lt;input type="text" onChange={this.inputChange}/&gt;       &lt;/div&gt;     &lt;/div&gt;   } } </code></pre> <p>但是这样会报错：</p> <pre><code>不能将类型“(e: Event) =&gt; void”分配给类型“ChangeEventHandler&lt;HTMLInputElement&gt;”。 参数“e”和“event” 的类型不兼容。 类型“ChangeEvent&lt;HTMLInputElement&gt;”缺少类型“Event”的以下属性: cancelBubble, composed, returnValue, srcElement 及其他 7 项。ts(2322) index.d.ts(2254, 9): 所需类型来自属性 "onChange"，在此处的 "DetailedHTMLProps&lt;InputHTMLAttributes&lt;HTMLInputElement&gt;, HTMLInputElement&gt;" 类型上声明该属性 </code></pre> <p>从这个报错信息来看，<code>onChange</code>事件需要的似乎是一个这样类型的处理函数<code>ChangeEventHandler&lt;HTMLInputElement&gt;</code></p> <p>现在先引入<code>ChangeEventHandler</code>，看一看它对应的源码：</p> <pre><code class="prism language-ts"><span class="token keyword">type</span> <span class="token class-name">ChangeEventHandler<span class="token operator">&lt;</span><span class="token constant">T</span> <span class="token operator">=</span> Element<span class="token operator">&gt;</span></span> <span class="token operator">=</span> EventHandler<span class="token operator">&lt;</span>ChangeEvent<span class="token operator">&lt;</span><span class="token constant">T</span><span class="token operator">&gt;&gt;</span><span class="token punctuation">;</span> </code></pre> <p>这意味着，我们的<code>onChange</code>事件是一个<code>EventHandler</code>，它自带的<code>event</code>参数类型为<code>ChangeEvent&lt;T&gt;</code>，由于这里是一个输入框，所以应该为<code>event</code>设置参数为<code>ChangeEvent&lt;HTMLInputElement&gt;</code>再来试试，成功获取到了输入内容！</p> <pre><code class="prism language-react">type IState = readonly&lt;{     ... }&gt;  class Student extends React.Component&lt;any, IState&gt;{   inputChange = (e: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {     console.log((e.target.value));   }    render(): React.ReactNode {     return &lt;div className="container"&gt;       &lt;div className="box"&gt;         &lt;input type="text" onChange={this.inputChange}/&gt;       &lt;/div&gt;     &lt;/div&gt;   } } </code></pre> <p>如果你使用的是hooks写法，也可以这样写，不过这并不是本节的重点：</p> <pre><code class="prism language-ts">inputChange <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token generic-function"><span class="token function">useCallback</span><span class="token generic class-name"><span class="token operator">&lt;</span>React<span class="token punctuation">.</span>ChangeEventHandler<span class="token operator">&lt;</span>HTMLInputElement<span class="token operator">&gt;&gt;</span></span></span><span class="token punctuation">(</span><span class="token punctuation">(</span>e<span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>     <span class="token builtin">console</span><span class="token punctuation">.</span><span class="token function">log</span><span class="token punctuation">(</span><span class="token punctuation">(</span>e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token punctuation">}</span><span class="token punctuation">,</span><span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span> </code></pre> <p>接下来给扩展一个功能，如果有很多个输入框，是否可以共用同一个<code>onChange</code>方法呢？</p> </h1> <p>比如说，我现在需要多个输入框，分别输入学号、姓名、年龄的信息</p> <p>如果分别给每个输入框绑定不同的事件，那就要写三个相似度非常高的函数，这样不太美观：</p> <pre><code class="prism language-react">import React, { ChangeEvent } from 'react'  type IState = Readonly&lt;{   no: string,   name: string,   age: string }&gt;  class Student extends React.Component&lt;any, IState&gt;{   readonly state: IState = {     no: "",     name: "",     age: "",   	list: []   }      inputChangeNo = (key: string, e: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {     // 不同的输入框触发change事件，最后打印的key值不同     console.log(key, e.target.value);   }      inputChangeName = (key: string, e: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {     console.log(key, e.target.value);   }      inputChangeAge = (key: string, e: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {     console.log(key, e.target.value);   }    render(): React.ReactNode {     return &lt;div className="container"&gt;       &lt;div className="box"&gt;         &lt;input           type="text"           value={this.state.no}           onChange={(e) =&gt; this.inputChangeNo("no", e)}           placeholder="输入学号"         /&gt;         &lt;input           type="text"           value={this.state.name}           onChange={(e) =&gt; this.inputChangeName("name", e)}           placeholder="输入姓名"         /&gt;         &lt;input           type="text"           value={this.state.age}           onChange={(e) =&gt; this.inputChangeAge("age", e)}           placeholder="输入年龄"         /&gt;       &lt;/div&gt;     &lt;/div&gt;   } }  export default Student </code></pre> <p>看起来我们似乎可以执行这样的操作：</p> <pre><code class="prism language-ts"><span class="token function-variable function">inputChange</span> <span class="token operator">=</span> <span class="token punctuation">(</span>key<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span> e<span class="token operator">:</span> ChangeEvent<span class="token operator">&lt;</span>HTMLInputElement<span class="token operator">&gt;</span><span class="token punctuation">)</span> <span class="token operator">=&gt;</span> <span class="token punctuation">{<!-- --></span>     <span class="token keyword">this</span><span class="token punctuation">.</span><span class="token function">setState</span><span class="token punctuation">(</span><span class="token punctuation">{<!-- --></span>         <span class="token punctuation">[</span>key<span class="token punctuation">]</span><span class="token operator">:</span> e<span class="token punctuation">.</span>target<span class="token punctuation">.</span>value     <span class="token punctuation">}</span><span class="token punctuation">)</span> <span class="token punctuation">}</span> </code></pre> <p>但是对于<code>key</code>值来说，他是一个<strong>字符串索引类型数据</strong>，所以一定需要给他绑定<strong>对应的类型</strong>。</p> <p>在这个案例中，我们需要用到的属性有：</p> <pre><code class="prism language-ts"><span class="token keyword">type</span> <span class="token class-name">IState</span> <span class="token operator">=</span> Readonly<span class="token operator">&lt;</span><span class="token punctuation">{<!-- --></span>   no<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>   name<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>   age<span class="token operator">:</span> <span class="token builtin">string</span><span class="token punctuation">,</span>   list<span class="token operator">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> <span class="token punctuation">}</span><span class="token operator">&gt;</span> </code></pre> <p>所以索引对应的类型应该有<code> "no" | "name" | "age "</code>，成功设定！</p> <pre><code class="prism language-react">import React, { ChangeEvent } from 'react'  interface PeopleType{   id: number   name: string   age: string }  interface IState{   [name: string]: string | PeopleType[]   list: PeopleType[]   no: string,   name: string,   age: string }  class People extends React.Component&lt;any, IState&gt;{   readonly state: IState = {     no: "",     name: "",     age: "",     list: []   }    inputChange = &lt;K extends keyof IState&gt;(key: K, e: ChangeEvent&lt;HTMLInputElement&gt;) =&gt; {     this.setState({       [key]: e.target.value     })   }    render(): React.ReactNode {     return &lt;div className="container"&gt;       &lt;div className="box"&gt;         &lt;input           type="text"           value={this.state.no}           onChange={(e) =&gt; this.inputChange("no", e)}           placeholder="输入学号"         /&gt;         &lt;input           type="text"           value={this.state.name}           onChange={(e) =&gt; this.inputChange("name", e)}           placeholder="输入姓名"         /&gt;         &lt;input           type="text"           value={this.state.age}           onChange={(e) =&gt; this.inputChange("age", e)}           placeholder="输入年龄"         /&gt;       &lt;/div&gt;     &lt;/div&gt;   } }  export default People </code></pre> </p></div> 			                </div>
+                <div class="clearfix"></div>
+                <div class="col-md-12 mt-5">
+                                        <p>上一个：<a href="/news/article-104173.htm">厨卫吊顶十大品牌有哪些牌子(厨卫吊顶十大品牌有哪些好)</a></p>
+                                        <p>下一个：<a href="/news/article-105129.htm">做动物疫苗前景怎么样 做动物疫苗前景怎么样啊</a></p>
+                                    </div>
+                                </div>
+                <div class="col-md-3">
+                    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">热门文章</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2"><a href="/news/article-92312.htm" title="聊城宠物用品专卖店在哪里（聊城哪里有宠物大市场!）">聊城宠物用品专卖店在哪里（聊城哪里有宠物大市场!）</a></li>
+                        <li class="py-2"><a href="/news/article-103495.htm" title="网页盒子水平布局方式">网页盒子水平布局方式</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-13-free-v2ray-subscribe.htm" title="VPN Good | 4月13日19.8M/S|免费Clash/V2ray/Shadowrocket/SSR订阅节点">VPN Good | 4月13日19.8M/S|免费Clash/V2ray/Shadowrocket/SSR订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-90076.htm" title="宠物买卖交易平台有哪些（宠物买卖交易平台有哪些软件）">宠物买卖交易平台有哪些（宠物买卖交易平台有哪些软件）</a></li>
+                        <li class="py-2"><a href="/news/article-94556.htm" title="动物打了疫苗了被咬还要***吗多少钱一针（动物打过疫苗被咬还有事啊）">动物打了疫苗了被咬还要***吗多少钱一针（动物打过疫苗被咬还有事啊）</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-8-clash-v2ray-ss-ssr.htm" title="VPN Good | 4月8日20.9M/S|免费Clash/SSR/V2ray/Shadowrocket订阅节点">VPN Good | 4月8日20.9M/S|免费Clash/SSR/V2ray/Shadowrocket订阅节点</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-4-27-clash-v2ray-ss-ssr.htm" title="VPN Good | 4月27日18M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点">VPN Good | 4月27日18M/S|免费SSR/Shadowrocket/Clash/V2ray订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-95300.htm" title="Element UI之 Timeline时间线 样式">Element UI之 Timeline时间线 样式</a></li>
+                        <li class="py-2"><a href="/news/article-105129.htm" title="做动物疫苗前景怎么样 做动物疫苗前景怎么样啊">做动物疫苗前景怎么样 做动物疫苗前景怎么样啊</a></li>
+                        <li class="py-2"><a href="/news/article-100475.htm" title="【Golang实战】反射设置结构体字段值">【Golang实战】反射设置结构体字段值</a></li>
+                    </ul>
+    </div>
+</div>
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">归纳</h3>
+    </div>
+    <div class="panel-body">
+        <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
+                        <li class="py-2">
+                <h4><span class="badge" style="float: right;">66</span> <a href="/date/2025-04/" title="2025-04 归档">2025-04</a></h4>
+            </li>
+                    </ul>
+    </div>
+</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fruits Shop End-->
+        <!-- Copyright Start -->
+    <div class="container-fluid copyright bg-dark py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-3 mb-md-0">
+                                        <p>
+                                                <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
+                                                <a href="/paid-subscribe/">推荐机场</a> |
+                                                <a href="/news/">新闻资讯</a> |
+                                                <a href="/client.htm">客户端</a> |
+                                                <a href="/about-us.htm">关于我们</a> |
+                        <a href="/disclaimer.htm">免责申明</a> |
+                        <a href="/privacy.htm">隐私申明</a> |
+                        <a href="/sitemap.xml">网站地图</a>
+                    </p>
+                    <span class="text-light">VPN Good 机场订阅中文网 版权所有 Powered by WordPress</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Copyright End -->
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i class="fa fa-arrow-up"></i></a>
+    <!-- JavaScript Libraries -->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.0.0/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/easing/easing.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/waypoints/waypoints.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/lightbox/js/lightbox.min.js"></script>
+    <script src="/assets/website/js/frontend/stashgithub/owlcarousel/owl.carousel.min.js"></script>
+    <!-- Template Javascript -->
+    <script src="/assets/website/js/frontend/stashgithub/main.js"></script>
+    <script src="https://www.freeclashnode.com/assets/js/frontend/invite-url.js"></script>
+    <script src="/assets/website/js/frontend/G.js"></script>
+</body>
+
+</html>
