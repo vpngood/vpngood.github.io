@@ -80,7 +80,7 @@
         <div class="container px-0">
             <nav class="navbar navbar-light bg-white navbar-expand-xl">
                 <a href="/" class="navbar-brand">
-                                <span class="text-primary display-6">VPN Good</span>
+                                <span class="text-primary display-6">VPN Good 免费节点分享</span>
                                 </a>
                 <button class="navbar-toggler py-2 px-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars text-primary"></span>
@@ -88,6 +88,7 @@
                 <div class="collapse navbar-collapse bg-white" id="navbarCollapse">
                     <div class="navbar-nav mx-auto">
                                                 <a href="/" class="nav-item nav-link">首页</a>
+                                                <a href="/free-nodes/" class="nav-item nav-link">免费节点</a>
                                                 <a href="/paid-subscribe/" class="nav-item nav-link">推荐机场</a>
                                                 <a href="/news/" class="nav-item nav-link">新闻资讯</a>
                                                 <a href="/client.htm" class="nav-item nav-link">客户端</a>
@@ -112,7 +113,7 @@
         <div class="container py-2">
             <div class="row">
                 <div class="col-md-9">
-                                    <input type="hidden" id="share-website-info" data-name="Clash Node官网订阅站" data-url="https://clashnode.github.io">
+                                    <input type="hidden" id="share-website-info" data-name="Clash Node免费节点站" data-url="https://clashnode.github.io">
                 <div class="xcblog-blog-detail xcblog-blog-detail-defined">
                       <p>在当今移动互联网时代，网络自由已成为许多用户的刚需。无论是为了访问全球资讯、使用海外服务，还是保护个人隐私，科学上网工具都扮演着重要角色。对于iOS用户而言，选择合适的科学上网App并正确配置使用，是突破网络限制的关键。本文将深入探讨iOS科学上网App的方方面面，包括其原理、热门工具推荐、详细配置教程以及实用技巧，帮助你安全、高效地畅游互联网。  </p>  <h2>一、iOS科学上网App的核心价值</h2>  <p>科学上网App并非简单的"翻墙工具"，而是融合了网络安全、隐私保护和全球互联的综合性解决方案。这类应用主要通过以下技术实现其功能：  </p>  <ol> <li><strong>VPN技术</strong>：建立加密隧道，隐藏真实IP地址  </li> <li><strong>代理协议</strong>（如Shadowsocks、V2Ray）：更灵活地绕过防火墙检测  </li> <li>DNS加密：防止DNS污染和劫持  </li> </ol>  <p>与安卓平台不同，iOS系统的封闭性使得科学上网App需要更精细的设计。优秀的iOS科学上网工具通常具备三大特征：<br /> - 系统级VPN支持（包括IKEv2/IPSec协议）<br /> - 智能路由分流功能（区分国内外流量）<br /> - 低电量消耗的轻量化设计  </p>  <h2>二、2023年主流iOS科学上网工具横向评测</h2>  <h3>1. 技术流首选：Quantumult X</h3>  <p>这款被资深用户誉为"瑞士军刀"的工具支持SS/SSR/Vmess/Trojan等多种协议，其独特的策略组功能可以实现：<br /> - 按域名自动切换节点<br /> - 广告过滤与隐私保护<br /> - 流量统计与速度测试  </p>  <p>配置复杂度：★★★★☆<br /> 隐私保护：★★★★★  </p>  <h3>2. 新手友好型：Surge</h3>  <p>虽然价格较高（约$49.99），但提供：<br /> - 可视化配置界面<br /> - 实时网络诊断工具<br /> - 企业级加密标准  </p>  <p>特别适合需要稳定连接远程办公的用户。  </p>  <h3>3. 开源解决方案：Shadowrocket</h3>  <p>支持订阅链接一键导入，具备：<br /> - 多协议兼容（包括最新的WireGuard）<br /> - 本地DNS映射<br /> - 流量压缩加速  </p>  <h2>三、手把手安装配置教程</h2>  <h3>非国区账号获取指南</h3>  <p>由于部分App在国区下架，建议：<br /> 1. 注册美区Apple ID（需准备境外手机号）<br /> 2. 购买礼品卡充值（避免绑定境外信用卡）<br /> 3. 搜索时使用英文关键词如"VPN Proxy"  </p>  <h3>进阶配置技巧</h3>  <p>以Quantumult X为例：<br /> ```javascript [server_local] shadowsocks=example.com:443, method=chacha20, password=123456, fast-open=false, udp-relay=true</p>  <p>[filter_remote] https://raw.githubusercontent.com/ConnersHua/Profiles/master/Quantumult/X/Filter/Unbreak.list, tag=Unbreak, enabled=true ```</p>  <p>关键配置项说明：<br /> - <code>udp-relay</code>：提升视频通话质量<br /> - <code>fast-open</code>：加速首次连接<br /> - 规则订阅：定期更新分流规则  </p>  <h2>四、避坑指南：常见问题解决方案</h2>  <h3>连接稳定性优化</h3>  <p>当出现频繁断连时，建议：<br /> 1. 切换至IKEv2协议（比L2TP更稳定）<br /> 2. 关闭iOS的"低数据模式"<br /> 3. 在WiFi/蜂窝网络设置中禁用代理  </p>  <h3>速度提升秘籍</h3>  <p>通过实测发现：<br /> - 日本/新加坡节点对中文用户延迟最低<br /> - 使用IPv6-only节点可绕过部分QoS限制<br /> - 启用"混淆"参数（如TLS1.3）可对抗深度包检测  </p>  <h2>五、法律与安全警示</h2>  <p>需要特别注意的是：<br /> - 中国《网络安全法》明确规定不得擅自建立VPN信道<br /> - 免费工具存在泄露浏览记录的风险（某知名免费VPN曾曝出出售用户数据）<br /> - 建议选择通过第三方审计的开源方案  </p>  <h2>专业点评：科学上网工具的演进趋势</h2>  <p>从技术发展角度看，iOS科学上网工具正呈现三大变革：<br /> 1. <strong>协议融合</strong>：如Xray-core整合了VLESS和Trojan-go特性<br /> 2. <strong>AI智能路由</strong>：根据网络状况自动选择最优节点<br /> 3. <strong>隐私计算</strong>：开始采用零信任架构保护用户身份  </p>  <p>正如网络安全专家Bruce Schneier所言："在数字时代，隐私不是隐藏秘密，而是控制个人信息的权力。"选择科学上网工具时，不应仅关注"能否连接"，更要考量其技术透明度、数据处理政策等深层次因素。  </p>  <p>对于普通用户，建议遵循"最小特权原则"：<br /> - 工作设备与科学上网设备分离<br /> - 重要服务使用双重验证<br /> - 定期检查App的网络权限  </p>  <p>通过合理使用这些工具，我们既能享受开放互联网的价值，又能有效管控安全风险。记住：技术本身无罪，关键在于如何使用。</p>                 </div>
                 <div class="clearfix"></div>
@@ -128,16 +129,16 @@
     </div>
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
-                        <li class="py-2"><a href="/news/article-150012.htm" title="国内科学上网全攻略：工具选择、配置详解与实用指南">国内科学上网全攻略：工具选择、配置详解与实用指南</a></li>
-                        <li class="py-2"><a href="/news/article-135618.htm" title="梅林固件科学上网性能优化全攻略：从高CPU占用到流畅体验的终极指南">梅林固件科学上网性能优化全攻略：从高CPU占用到流畅体验的终极指南</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-7-31-free-vless-node.htm" title="V2ray节点 | 7月31日19.9M/S|免费Clash/SSR/Shadowrocket/V2ray订阅机场">V2ray节点 | 7月31日19.9M/S|免费Clash/SSR/Shadowrocket/V2ray订阅机场</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-19-vless-github.htm" title="V2ray节点 | 8月19日18.3M/S|免费Shadowrocket/V2ray/SSR/Clash订阅机场">V2ray节点 | 8月19日18.3M/S|免费Shadowrocket/V2ray/SSR/Clash订阅机场</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-20-node-share.htm" title="V2ray节点 | 8月20日20.7M/S|免费Shadowrocket/SSR/Clash/V2ray订阅机场">V2ray节点 | 8月20日20.7M/S|免费Shadowrocket/SSR/Clash/V2ray订阅机场</a></li>
-                        <li class="py-2"><a href="/free-nodes/2025-8-12-vless-windows.htm" title="V2ray节点 | 8月12日19.5M/S|免费SSR/Clash/Shadowrocket/V2ray订阅机场">V2ray节点 | 8月12日19.5M/S|免费SSR/Clash/Shadowrocket/V2ray订阅机场</a></li>
-                        <li class="py-2"><a href="/news/article-137309.htm" title="全面掌握Clash 360版：从入门到精通的网络代理指南">全面掌握Clash 360版：从入门到精通的网络代理指南</a></li>
-                        <li class="py-2"><a href="/news/article-133086.htm" title="突破网络限制：V2Ray优化全攻略，让YouTube流畅如飞">突破网络限制：V2Ray优化全攻略，让YouTube流畅如飞</a></li>
-                        <li class="py-2"><a href="/news/article-147463.htm" title="新3 V2Ray固件终极指南：解锁高速稳定网络的最佳选择">新3 V2Ray固件终极指南：解锁高速稳定网络的最佳选择</a></li>
-                        <li class="py-2"><a href="/news/article-133971.htm" title="安卓Clash配置后无法上网？一文彻底解决你的代理困境">安卓Clash配置后无法上网？一文彻底解决你的代理困境</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-6-vless-windows.htm" title="V2ray节点 | 8月6日22.9M/S|免费V2ray节点/SSR/Shadowrocket节点/Clash订阅机场">V2ray节点 | 8月6日22.9M/S|免费V2ray节点/SSR/Shadowrocket节点/Clash订阅机场</a></li>
+                        <li class="py-2"><a href="/news/article-152173.htm" title="彻底告别断流烦恼：v2rayng连接稳定性终极解决方案">彻底告别断流烦恼：v2rayng连接稳定性终极解决方案</a></li>
+                        <li class="py-2"><a href="/news/article-151874.htm" title="解锁高效网络自由：Clash局域网代理的深度配置与实战指南">解锁高效网络自由：Clash局域网代理的深度配置与实战指南</a></li>
+                        <li class="py-2"><a href="/news/article-153638.htm" title="苹果设备科学上网全攻略：从Clash到替代工具的深度解析与实战指南">苹果设备科学上网全攻略：从Clash到替代工具的深度解析与实战指南</a></li>
+                        <li class="py-2"><a href="/news/article-154002.htm" title="突破网络限制：Windows 7系统下局域网共享科学上网全攻略">突破网络限制：Windows 7系统下局域网共享科学上网全攻略</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-23-free-node-subscribe-links.htm" title="VPN Good | 9月23日18.6M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray订阅节点">VPN Good | 9月23日18.6M/S|免费Shadowrocket节点/SSR/Clash节点/V2ray订阅节点</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-19-top-vpn-node.htm" title="VPN Good | 9月19日18.5M/S|免费Clash节点/SSR/V2ray节点/Shadowrocket订阅节点">VPN Good | 9月19日18.5M/S|免费Clash节点/SSR/V2ray节点/Shadowrocket订阅节点</a></li>
+                        <li class="py-2"><a href="/news/article-152549.htm" title="完全解析 Clash for AndroidURL：安装、配置与常见问题解答">完全解析 Clash for AndroidURL：安装、配置与常见问题解答</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-8-18-latest-vless-node.htm" title="V2ray节点 | 8月18日19.6M/S|免费SSR/V2ray节点/Clash节点/Shadowrocket订阅机场">V2ray节点 | 8月18日19.6M/S|免费SSR/V2ray节点/Clash节点/Shadowrocket订阅机场</a></li>
+                        <li class="py-2"><a href="/free-nodes/2025-9-20-top-vpn.htm" title="VPN Good | 9月20日18.7M/S|免费Clash节点/SSR/Shadowrocket节点/V2ray订阅节点">VPN Good | 9月20日18.7M/S|免费Clash节点/SSR/Shadowrocket节点/V2ray订阅节点</a></li>
                     </ul>
     </div>
 </div>
@@ -149,13 +150,10 @@
     <div class="panel-body">
         <ul class="p-0 x-0" style="list-style: none;margin: 0;padding: 0;">
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">1</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
+                <h4><span class="badge" style="float: right;">23</span> <a href="/date/2025-09/" title="2025-09 归档">2025-09</a></h4>
             </li>
                         <li class="py-2">
-                <h4><span class="badge" style="float: right;">30</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
-            </li>
-                        <li class="py-2">
-                <h4><span class="badge" style="float: right;">26</span> <a href="/date/2025-07/" title="2025-07 归档">2025-07</a></h4>
+                <h4><span class="badge" style="float: right;">27</span> <a href="/date/2025-08/" title="2025-08 归档">2025-08</a></h4>
             </li>
                     </ul>
     </div>
@@ -171,8 +169,10 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center mb-3 mb-md-0">
-                                        <p>
+                                        <p>本站内容仅供学习与技术研究用途，无意传播或倡导任何违反法律法规的行为。在此声明：用户须自行了解所在地法律法规，合法合规使用；因使用不当产生的法律责任，与本站及作者无关；请在使用前仔细阅读本声明，继续使用即视为同意以上条款。</p>
+                    <p>
                                                 <a href="/">首页</a> |
+                                                <a href="/free-nodes/">免费节点</a> |
                                                 <a href="/paid-subscribe/">推荐机场</a> |
                                                 <a href="/news/">新闻资讯</a> |
                                                 <a href="/client.htm">客户端</a> |
@@ -181,7 +181,7 @@
                         <a href="/privacy.htm">隐私申明</a> |
                         <a href="/sitemap.xml">网站地图</a>
                     </p>
-                    <span class="text-light">VPN Good 机场订阅中文网 版权所有 Powered by WordPress</span>
+                                        <span class="text-light">VPN Good 机场订阅中文网 版权所有 Powered by WordPress</span>
                 </div>
             </div>
         </div>
